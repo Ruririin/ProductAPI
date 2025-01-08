@@ -27,14 +27,14 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("login")]
-    public IActionResult Login([FromForm] string username, [FromForm] string password)
+    public IActionResult Login([FromBody] User loginUser)
     {
-        var user = _dbContext.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
+        var user = _dbContext.Users.FirstOrDefault(u => u.Username == loginUser.Username && u.Password == loginUser.Password);
         if (user == null)
         {
-            return Unauthorized("Invalid credentials.");
+            return Unauthorized(new { message = "Invalid credentials" }); // Return JSON with message
         }
 
-        return Ok("Login successful.");
+        return Ok(new { message = "Login successful" }); // Return JSON with message
     }
 }
