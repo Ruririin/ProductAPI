@@ -48,13 +48,3 @@ function displayProducts(products) {
         productList.appendChild(productItem);
     });
 }
-function setupSearchBar(products) {
-    const searchBar = document.getElementById('search-bar');
-    searchBar.addEventListener('input', function () {
-        const query = searchBar.value.toLowerCase();
-        const filteredProducts = products.filter(product =>
-            product.name.toLowerCase().includes(query)
-        );
-        displayProducts(filteredProducts);
-    });
-    }
