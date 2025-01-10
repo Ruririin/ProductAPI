@@ -61,7 +61,7 @@ function displayProducts(products) {
     });
 }
 
-function setupSearchListener(encodedCredentials) {
+function setupSearchListener() {
     const searchButton = document.getElementById('search-button');
     const searchBar = document.getElementById('search-bar');
 

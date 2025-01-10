@@ -37,17 +37,17 @@ namespace ProductAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateProduct([FromBody] Product product)
+        public IActionResult CreateProduct( Product product)
         {
             _dbContext.Products.Add(product);
             _dbContext.SaveChanges();
             return Ok(product);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateProduct(int id, [FromBody] Product product)
+        [HttpPut]
+        public IActionResult UpdateProduct( Product product)
         {
-            var existingProduct = _dbContext.Products.Find(id);
+            var existingProduct = _dbContext.Products.Find(product.Id);
             if (existingProduct == null)
             {
                 return NotFound("Product not found.");

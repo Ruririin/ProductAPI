@@ -1,6 +1,6 @@
 ﻿window.onload = function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('id');
+ 
+    const productId = getProductId()
 
     if (!productId) {
         alert('No product ID specified. Redirecting back.');
@@ -82,7 +82,6 @@ function deleteProduct() {
             });
     }
 }
-
 function getProductId() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('id');

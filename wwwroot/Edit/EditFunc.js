@@ -63,12 +63,13 @@ function updateProduct(productId, encodedCredentials) {
     }
 
     const updatedProduct = {
+        id:productId,
         name,
         price,
         stock,
     };
 
-    fetch(`https://localhost:7176/api/Products/${productId}`, {
+    fetch(`https://localhost:7176/api/Products`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
