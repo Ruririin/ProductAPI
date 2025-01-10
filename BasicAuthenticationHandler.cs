@@ -18,8 +18,8 @@ public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSc
         IOptionsMonitor<AuthenticationSchemeOptions> options,
         ILoggerFactory logger,
         UrlEncoder encoder,
-        ISystemClock clock,
-        AppDbContext dbContext) : base(options, logger, encoder, clock)
+        TimeProvider clock,
+        AppDbContext dbContext) : base(options, logger, encoder)
     {
         _dbContext = dbContext;
     }
@@ -48,7 +48,6 @@ public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSc
         var username = credentials[0];
         var password = credentials[1];
 
-        // Validate the credentials
         var user = _dbContext.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
         if (user == null)
         {

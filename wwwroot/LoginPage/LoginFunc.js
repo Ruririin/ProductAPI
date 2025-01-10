@@ -12,7 +12,6 @@ loginForm.addEventListener('submit', function (event) {
         return;
     }
 
-    // Call the login API
     fetch('https://localhost:7176/api/User/login', {
         method: 'POST',
         headers: {
@@ -27,11 +26,9 @@ loginForm.addEventListener('submit', function (event) {
             return response.json();
         })
         .then(data => {
-            // Store credentials for future API calls
             sessionStorage.setItem('username', username);
             sessionStorage.setItem('password', password);
 
-            // Redirect to homepage
             window.location.href = '/HomePage/Home.html';
         })
         .catch(err => {

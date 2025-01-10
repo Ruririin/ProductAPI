@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page</title>
+    <title>Home Page</title>
     <link rel="stylesheet" href="HomeStyle.css">
 </head>
 <body>
-    <!-- Navbar Section -->
     <nav class="navbar">
-        <input type="text" id="search-bar" placeholder="Search for a product..." />
-        <button id="cart-button">Cart</button>
+        <div class="left-side">
+            <input type="text" id="search-bar" placeholder="Search Product" />
+            <button id="search-button">Search</button>
+        </div>
+        <div class="right-side">
+            <button onclick="window.location.href='../Add/AddProduct.html'">Add Product</button>
+        </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="product-container">
         <div id="product-list"></div>
     </div>

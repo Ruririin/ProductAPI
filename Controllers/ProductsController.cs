@@ -17,15 +17,13 @@ namespace ProductAPI.Controllers
             _dbContext = dbContext;
         }
 
-        // Fetch all products
         [HttpGet]
         public IActionResult GetAllProducts()
         {
             var products = _dbContext.Products.ToList();
             return Ok(products);
+        }
 
-
-        // Fetch a single product by ID
         [HttpGet("{id}")]
         public IActionResult GetProductById(int id)
         {
@@ -36,41 +34,34 @@ namespace ProductAPI.Controllers
             }
 
             return Ok(product);
-
-        // Add a new product
-        [HttpPost]
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _dbContext.Products.Add(product);
-            _dbContext.SaveChanges();
-
-            return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product);
-
-            return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product);
-        [HttpPut("{id}")]
-        public IActionResult UpdateProduct(int id, [FromForm] Product product)
-        [HttpPut("{id}")]
-        public IActionResult UpdateProduct(int id, [FromForm] Product product)
-        {
-            //var existingProduct = _dbContext.Products.Find(id);
-            //if (existingProduct == null)
-            //{
-            //    return NotFound("Product not found.");
-            existingProduct.Name = product.Name;
-            existingProduct.Price = product.Price;
-            existingProduct.Stock = product.Stock;
-            existingProduct.Name = product.Name;
-            existingProduct.Price = product.Price;
-            existingProduct.Stock = product.Stock;
-
-            //_dbContext.SaveChanges();
-
         }
 
-        // Remove a product
+        [HttpPost]
+        public IActionResult CreateProduct([FromBody] Product product)
+        {
+            _dbContext.Products.Add(product);
+            _dbContext.SaveChanges();
+            return Ok(product);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateProduct(int id, [FromBody] Product product)
+        {
+            var existingProduct = _dbContext.Products.Find(id);
+            if (existingProduct == null)
+            {
+                return NotFound("Product not found.");
+            }
+
+            existingProduct.Name = product.Name;
+            existingProduct.Price = product.Price;
+            existingProduct.Stock = product.Stock;
+
+            _dbContext.SaveChanges();
+
+            return Ok("Product updated successfully.");
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id)
         {

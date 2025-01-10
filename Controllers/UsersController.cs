@@ -32,9 +32,9 @@ public class UserController : ControllerBase
         var user = _dbContext.Users.FirstOrDefault(u => u.Username == loginUser.Username && u.Password == loginUser.Password);
         if (user == null)
         {
-            return Unauthorized(new { message = "Invalid credentials" }); // Return JSON with message
+            return Unauthorized(new { message = "Invalid credentials" }); 
         }
 
-        return Ok(new { message = "Login successful" }); // Return JSON with message
+        return Ok(new { message = "Login successful" }); 
     }
 }

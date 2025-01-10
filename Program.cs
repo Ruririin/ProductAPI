@@ -10,7 +10,6 @@ builder.Services.AddMvc().AddXmlDataContractSerializerFormatters();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Register Basic Authentication
 builder.Services.AddAuthentication("Basic")
     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("Basic", options => { });
 
@@ -27,8 +26,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
-// Use Authentication and Authorization middleware
 app.UseAuthentication();
 app.UseAuthorization();
 
